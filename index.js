@@ -13,7 +13,10 @@ cloudinary.cloudinaryConnect();
 fileUploadModel.sync({force:false})
 
 app.use(express.json())
-app.use(fileupload()) // file upload middleware
+app.use(fileupload({
+    useTempFiles:true,
+    tempFileDir:'/tmp/'
+})) // file upload middleware
 app.use("/api/v1/upload", uploadRoute);
 
 app.listen(port, ()=>{
